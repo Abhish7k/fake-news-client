@@ -17,7 +17,9 @@ const Hero = () => {
 
       <h1 className="head_text font-semibold mt-20">
         Swiftly Unmask Fake News with <br className="max-md:hidden" />
-        <span className="orange_gradient ">Artificial Intelligence</span>
+        <span className="gradient-text text-transparent animate-gradient">
+          Artificial Intelligence
+        </span>
       </h1>
       <h2 className="desc">
         Harness the power of swift AI detection, unveiling truth by unmasking
