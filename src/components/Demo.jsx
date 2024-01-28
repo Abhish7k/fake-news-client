@@ -53,14 +53,14 @@ const Demo = () => {
       </div>
 
       {/* Display Result */}
-      <div className="my-10 max-w-full flex justify-center items-center">
+      <div className="my-10 max-w-full flex flex-col justify-center items-center">
         {loading === "true" && (
           <img src={loader} alt="loader" className="w-20 h-20 object-contain" />
         )}
 
         {result && (
           <div>
-            <h2 className="font-satoshi font-bold text-gray-600 text-xl">
+            <h2 className="mt-4 font-satoshi font-bold text-gray-600 text-xl">
               Result: <span className="blue_gradient">{isFake}</span>
             </h2>
           </div>
