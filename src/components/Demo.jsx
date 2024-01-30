@@ -1,26 +1,38 @@
-/* eslint-disable no-unused-vars */
-
 import { useState } from "react";
 import linkIcon from "../assets/link.svg";
 import loader from "../assets/loader.svg";
-// src/assets/loader.svg
+import axios from "axios";
 
 const Demo = () => {
-  const [isFake, setIsFake] = useState("Real");
-  const [result, setResult] = useState(false);
-  const [loading, setLoading] = useState("false");
+  const [result, setResult] = useState("");
+  const [showResult, setShowResult] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [articleLink, setArticleLink] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleChange = (event) => {
+    setArticleLink(event.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setLoading("true");
+    setLoading(true);
+    setShowResult(false);
 
-    setTimeout(() => {
-      setResult(true);
-      setLoading("false");
-    }, 3000);
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/detect", {
+        article: articleLink,
+      });
 
-    console.log("submit handled");
+      const data = await response.data;
+
+      setLoading(false);
+      setShowResult(true);
+
+      setResult(data.result);
+    } catch (error) {
+      console.log({ error: error });
+    }
   };
 
   return (
@@ -38,6 +50,7 @@ const Demo = () => {
           />
 
           <input
+            onChange={handleChange}
             type="url"
             placeholder="Paste the article link"
             required
@@ -54,14 +67,14 @@ const Demo = () => {
 
       {/* Display Result */}
       <div className="my-10 max-w-full flex flex-col justify-center items-center">
-        {loading === "true" && (
+        {loading && (
           <img src={loader} alt="loader" className="w-20 h-20 object-contain" />
         )}
 
-        {result && (
+        {showResult && (
           <div>
             <h2 className="mt-4 font-satoshi font-bold text-gray-600 text-xl">
-              Result: <span className="blue_gradient">{isFake}</span>
+              Result: <span className="blue_gradient">{result}</span>
             </h2>
           </div>
         )}
