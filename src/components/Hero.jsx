@@ -3,7 +3,7 @@ const Hero = () => {
     <header className="w-full flex justify-center items-center flex-col">
       <nav className="flex justify-between items-center w-full mb-10 pt-4">
         <a href="/" className="flex items-center">
-          <img src="/public/logo.svg" alt="" className="h-7" />
+          <img src="/logo.svg" alt="" className="h-7" />
           <h1 className="pl-2 font-bold text-2xl">FakeNewsFindr</h1>
         </a>
 
