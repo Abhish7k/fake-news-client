@@ -51,8 +51,8 @@ const Demo = () => {
 
           <input
             onChange={handleChange}
-            type="url"
-            placeholder="Paste the article link"
+            type="text"
+            placeholder="Paste the article"
             required
             className="url_input peer"
           />
